@@ -12,6 +12,7 @@
     "command-line-args": "^5.0.2",
     "emoji-datasource": "^4.0.4",
     "emoji-datasource-apple": "^4.0.4",
+    "emoji-datasource-facebook": "^4.1.0",
     "emoji-datasource-google": "^4.0.4",
     "emoji-datasource-twitter": "^4.0.4",
     "fs-extra": "^6.0.1",

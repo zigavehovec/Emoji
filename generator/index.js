@@ -27,6 +27,11 @@ const targets = [{
     name: "TwitterEmoji",
     dataSource: "twitter",
     dataAttribute: "has_img_twitter"
+}, {
+    package: "facebook",
+    name: "FacebookEmoji",
+    dataSource: "facebook",
+    dataAttribute: "has_img_facebook"
 }];
 
 /**

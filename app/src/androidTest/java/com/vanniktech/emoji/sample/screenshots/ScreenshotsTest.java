@@ -37,6 +37,10 @@ import static java.util.Locale.US;
     start(Variant.GOOGLE);
   }
 
+  @Test public void takeScreenShotsEmojiFacebook() throws InterruptedException {
+    start(Variant.FACEBOOK);
+  }
+
   @Test public void takeScreenShotsEmojiTwitter() throws InterruptedException {
     start(Variant.TWITTER);
   }
@@ -84,6 +88,7 @@ import static java.util.Locale.US;
   enum Variant {
     GOOGLE("Google"),
     IOS("Ios"),
+    FACEBOOK("Facebook"),
     TWITTER("Twitter");
 
     final String title;

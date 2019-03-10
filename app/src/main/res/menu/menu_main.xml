@@ -23,6 +23,9 @@
                     android:id="@+id/menuMainGoogleCompat"
                     android:title="@string/variant_google_compat_title"/>
                 <item
+                    android:id="@+id/menuMainFacebook"
+                    android:title="@string/variant_facebook_title"/>
+                <item
                     android:id="@+id/menuMainTwitter"
                     android:title="@string/variant_twitter_title"/>
             </group>
