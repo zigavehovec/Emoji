@@ -1,4 +1,4 @@
-include ':app'
+include ':app', ':emoji-imageloader-coil'
 include ':emoji'
 include ':emoji-google'
 include ':emoji-google-compat'
