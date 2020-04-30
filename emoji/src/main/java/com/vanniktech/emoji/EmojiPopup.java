@@ -39,6 +39,7 @@ import static com.vanniktech.emoji.Utils.checkNotNull;
 
 @SuppressWarnings("PMD.GodClass") public final class EmojiPopup implements EmojiResultReceiver.Receiver {
   static final int MIN_KEYBOARD_HEIGHT = 50;
+  static final int APPLY_WINDOW_INSETS_DURATION = 250;
 
   final View rootView;
   final Activity context;
@@ -52,6 +53,9 @@ import static com.vanniktech.emoji.Utils.checkNotNull;
 
   boolean isPendingOpen;
   boolean isKeyboardOpen;
+
+  private int globalKeyboardHeight;
+  private int delay;
 
   @Nullable OnEmojiPopupShownListener onEmojiPopupShownListener;
   @Nullable OnSoftKeyboardCloseListener onSoftKeyboardCloseListener;
@@ -211,11 +215,18 @@ import static com.vanniktech.emoji.Utils.checkNotNull;
     }
   }
 
-  void updateKeyboardStateOpened(final int keyboardHeight) {
+  @SuppressWarnings("PMD.CyclomaticComplexity") void updateKeyboardStateOpened(final int keyboardHeight) {
     if (popupWindowHeight > 0 && popupWindow.getHeight() != popupWindowHeight) {
       popupWindow.setHeight(popupWindowHeight);
     } else if (popupWindowHeight == 0 && popupWindow.getHeight() != keyboardHeight) {
       popupWindow.setHeight(keyboardHeight);
+    }
+
+    if (globalKeyboardHeight != keyboardHeight) {
+      globalKeyboardHeight = keyboardHeight;
+      delay = APPLY_WINDOW_INSETS_DURATION;
+    } else {
+      delay = 0;
     }
 
     final int properWidth = Utils.getProperWidth(context);
@@ -327,8 +338,12 @@ import static com.vanniktech.emoji.Utils.checkNotNull;
 
   void showAtBottom() {
     isPendingOpen = false;
-    popupWindow.showAtLocation(rootView, Gravity.NO_GRAVITY, 0,
-        Utils.getProperHeight(context) + popupWindowHeight);
+    editText.postDelayed(new Runnable() {
+      @Override public void run() {
+        popupWindow.showAtLocation(rootView, Gravity.NO_GRAVITY, 0,
+            Utils.getProperHeight(context) + popupWindowHeight);
+      }
+    }, delay);
 
     if (onEmojiPopupShownListener != null) {
       onEmojiPopupShownListener.onEmojiPopupShown();
