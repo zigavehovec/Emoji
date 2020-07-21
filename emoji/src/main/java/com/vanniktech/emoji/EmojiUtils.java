@@ -19,8 +19,6 @@ package com.vanniktech.emoji;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.text.TextUtils;
-
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,7 +28,7 @@ public final class EmojiUtils {
 
   /** returns true when the string contains only emojis. Note that whitespace will be filtered out. */
   public static boolean isOnlyEmojis(@Nullable final CharSequence text) {
-    if (!TextUtils.isEmpty(text)) {
+    if (text != null && text.length() > 0) {
       final String inputWithoutSpaces = SPACE_REMOVAL.matcher(text).replaceAll(Matcher.quoteReplacement(""));
 
       return EmojiManager.getInstance()
