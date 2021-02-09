@@ -266,7 +266,7 @@ import static com.vanniktech.emoji.Utils.checkNotNull;
     if (!popupWindow.isShowing()) {
       // this is needed because something might have cleared the insets listener
       start();
-      requestApplyInsets(context.getWindow().getDecorView());
+      //requestApplyInsets(context.getWindow().getDecorView());
       show();
     } else {
       dismiss();
